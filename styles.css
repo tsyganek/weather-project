@@ -1,31 +1,87 @@
 body {
-  max-width: 80%;
+  max-width: 70%;
+  min-width: 60%;
   border: 1px solid grey;
   border-radius: 15px;
-  font-family: Roboto;
+  color: #57595d;
+  padding: 40px;
+  min-height: auto;
 }
 
 footer {
-  padding: 15px;
   text-align: center;
   font-size: 12px;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
 }
 
 h3 {
   font-size: 16px;
+  font-weight: 400;
 }
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .container {
-  padding: 15px;
+  padding: 10px;
 }
 
 .current-weather-container {
-  padding: 40px;
+  margin: 40px;
 }
 
-.form-container {
-  padding: 25px;
+.current-weather-city-block {
+  text-align: right;
+}
+
+.current-weather-icon {
+  width: 100px;
+}
+
+.current-date {
+  font-size: 16px;
+}
+
+.current-sky {
+  font-size: 16px;
+}
+
+.forecast-icon {
+  width: 50px;
+}
+
+.logo {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Roboto;
+  color: #e0218a;
+  font-size: 30px;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+}
+
+.forecast-weather-container {
+  margin: 25px 0px;
 }
