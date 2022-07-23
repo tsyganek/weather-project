@@ -24,6 +24,11 @@ function displayWeather(response) {
 
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
+
+  let cityElement = document.querySelector("#current-city");
+  cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 }
 
 axios.get(apiUrlbyCityName).then(displayWeather);
+
+//time

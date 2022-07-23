@@ -59,12 +59,9 @@ a {
   width: 100px;
 }
 
-.current-date {
-  font-size: 16px;
-}
-
-.current-sky {
-  font-size: 16px;
+.current-city {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .forecast-icon {
