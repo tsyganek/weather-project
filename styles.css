@@ -1,9 +1,8 @@
 body {
-  max-width: 70%;
+  width: 70%;
   min-width: 60%;
   color: #57595d;
   padding: 40px;
-  max-height: auto;
 }
 
 footer {
@@ -23,17 +22,18 @@ h2 {
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
 }
 
 h4 {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
 }
 
 li {
   list-style: none;
+  font-size: 13px;
 }
 
 a {

@@ -64,23 +64,25 @@
                 />
               </div>
               <div class="col-2">
-                <h1>15</h1>
+                <h1 id="temperature"></h1>
                 <span>°C</span>
                 <span>|°F</span>
               </div>
-              <div class="col-3">
+              <div class="col-5">
                 <ul>
-                  <li>Precipitation</li>
-                  <li>Humidity</li>
-                  <li>Wind</li>
+                  <li id="feels-like"></li>
+                  <li id="humidity"></li>
+                  <li id="wind"></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="col-4 current-weather-city-block">
-            <h2 class="current-city">Solna</h2>
-            <h3 class="current-date">Date and time</h3>
-            <h3 class="current-sky">Partly Cloudy</h3>
+            <ul>
+              <li class="current-city" id="city"></li>
+              <li class="current-date"></li>
+              <li class="current-sky" id="description"></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -158,5 +160,6 @@
         </p>
       </footer>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>
