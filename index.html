@@ -31,7 +31,7 @@
   <body>
     <div class="container">
       <!-- logo    -->
-      <div class="logo-container"><span class="logo">Weather Sis</span></div>
+      <div class="logo-container"><span class="logo">Weather</span></div>
 
       <!-- search form -->
       <div class="form-container">
@@ -61,8 +61,10 @@
               </div>
               <div class="col-2">
                 <h1 id="temperature"></h1>
-                <span>°C</span>
-                <span>|°F</span>
+                <span>
+                  <a href="#" id="celcius-link">°C</a> |
+                  <a href="#" id="farenheit-link">°F</a></span
+                >
               </div>
               <div class="col-5">
                 <ul>
@@ -76,8 +78,8 @@
           <div class="col-4 current-weather-city-block">
             <ul>
               <li class="current-city" id="current-city"></li>
-              <li class="current-date" id="current-date"></li>
               <li class="current-sky" id="description"></li>
+              <li class="current-date" id="current-date"></li>
             </ul>
           </div>
         </div>

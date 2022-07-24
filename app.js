@@ -1,5 +1,8 @@
 //actual time
 
+let celciusTemperature = null;
+let feelsLikeCelciusTemperature = null;
+
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -26,8 +29,6 @@ function formatDate(timestamp) {
 // weather search engine
 
 function displayWeather(response) {
-  console.log(response);
-
   let weatherIconElement = document.querySelector("#icon");
   weatherIconElement.setAttribute(
     "src",
@@ -39,7 +40,8 @@ function displayWeather(response) {
   );
 
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
+  celciusTemperature = Number(temperatureElement.innerHTML.slice(0, -2));
 
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
@@ -50,7 +52,8 @@ function displayWeather(response) {
   let feelsLikeElement = document.querySelector("#feels-like");
   feelsLikeElement.innerHTML = `Feels like: ${Math.round(
     response.data.main.feels_like
-  )}°`;
+  )}°C`;
+  feelsLikeCelciusTemperature = Math.round(response.data.main.feels_like);
 
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -59,7 +62,9 @@ function displayWeather(response) {
   cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
   let dateElement = document.querySelector("#current-date");
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  dateElement.innerHTML = ` Last renewed: ${formatDate(
+    response.data.dt * 1000
+  )}`;
 }
 
 // city
@@ -79,4 +84,31 @@ function handleSubmit(event) {
 let form = document.querySelector("#submit-form");
 form.addEventListener("submit", handleSubmit);
 
-search("kyiv");
+// units convertion
+function displayFarenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let farenheitTemperature = Math.round(celciusTemperature * 1.8 + 32);
+  temperatureElement.innerHTML = `${farenheitTemperature}°F`;
+
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let feelsLikeFarenheitTemperature = Math.round(
+    feelsLikeCelciusTemperature * 1.8 + 32
+  );
+  feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
+}
+
+function displayCelciusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${celciusTemperature}°C`;
+
+  let feelsLikeElement = document.querySelector("#feels-like");
+  feelsLikeElement.innerHTML = `Feels like: ${feelsLikeCelciusTemperature}°C`;
+}
+
+let farenheitLink = document.querySelector("#farenheit-link");
+farenheitLink.addEventListener("click", displayFarenheitTemperature);
+
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelciusTemperature);
