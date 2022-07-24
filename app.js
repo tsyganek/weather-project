@@ -75,6 +75,8 @@ function search(city) {
   axios.get(apiUrlbyCityName).then(displayWeather);
 }
 
+search("Bucha");
+
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-search-element");
