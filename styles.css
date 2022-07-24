@@ -1,54 +1,50 @@
 body {
   width: 70%;
-  min-width: 60%;
   color: #57595d;
-  padding: 40px;
+  margin: auto;
 }
 
 footer {
   text-align: center;
-  font-size: 12px;
-  padding: 20px;
+  padding-top: 20px;
+  font-size: 10px;
 }
 
-h1 {
+h1,
+h2 {
   font-size: 30px;
   font-weight: bold;
 }
 
-h2 {
-  font-size: 25px;
-  font-weight: 700;
-}
-
 h3 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
 }
 
 h4 {
-  font-size: 10px;
-  font-weight: bold;
+  font-size: 15px;
 }
 
 li {
   list-style: none;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .container {
+  margin: 30px;
   padding: 30px;
-  margin: 20px;
   border: 1px solid grey;
   border-radius: 15px;
+  background-color: #f8d3de;
 }
 
 .current-weather-container {
-  margin: 30px;
+  margin-bottom: 20px;
 }
 
 .current-weather-city-block {
@@ -56,11 +52,16 @@ a {
 }
 
 .current-weather-icon {
-  width: 50px;
+  width: 70px;
 }
 
 .current-city {
   font-size: 20px;
+  font-weight: bold;
+}
+
+.current-sky {
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -73,11 +74,12 @@ a {
   font-weight: bold;
   font-family: Roboto;
   color: #e0218a;
-  font-size: 35px;
+  font-size: 25px;
+  margin-bottom: 20px;
 }
 
 .logo-container {
-  margin: 20px 15px;
+  margin: 10px;
 }
 
 .forecast-weather-container {
