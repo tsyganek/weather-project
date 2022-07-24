@@ -1,7 +1,5 @@
 //actual time
 
-let city = "new york";
-
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -26,11 +24,6 @@ function formatDate(timestamp) {
 }
 
 // weather search engine
-
-const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
-let apiUrlbyCityName = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-let apiUrlbyCoordinates = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=${apiKey}&units=metric`;
 
 function displayWeather(response) {
   console.log(response);
@@ -69,4 +62,21 @@ function displayWeather(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
-axios.get(apiUrlbyCityName).then(displayWeather);
+// city
+
+function search(city) {
+  const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
+  let apiUrlbyCityName = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlbyCityName).then(displayWeather);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-search-element");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#submit-form");
+form.addEventListener("submit", handleSubmit);
+
+search("kyiv");
