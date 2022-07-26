@@ -85,3 +85,11 @@ a {
 .forecast-weather-container {
   margin-bottom: 20px;
 }
+
+.forecast-day {
+  opacity: 0.7;
+}
+
+.forecast-temp-min {
+  opacity: 0.5;
+}
