@@ -26,6 +26,53 @@ function formatDate(timestamp) {
   return `${days[day]}, ${hours}:${minutes}`;
 }
 
+// weather forecast
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class = "forecast row">`;
+
+  let today = new Date();
+  let weekday = today.getDay();
+
+  let weekRange = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ];
+
+  let days = weekRange.slice(weekday, weekday + 6);
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col-2 forecast">
+        <div class="forecast-day">
+            <h4 class="forecast-day-text">${day}</h4>
+        </div>
+          <img class="forecast-icon" src="1F324.svg" alt="partly cloudy" />
+        <div class="forecast-temp">
+          <span class="forecast-temp-max">11</span>
+          <span class="forecast-temp-min">12</span>
+        </div>
+      </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // weather search engine
 
 function displayWeather(response) {
@@ -75,7 +122,8 @@ function search(city) {
   axios.get(apiUrlbyCityName).then(displayWeather);
 }
 
-search("Bucha");
+search("Mariupol");
+displayForecast();
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -114,5 +162,3 @@ farenheitLink.addEventListener("click", displayFarenheitTemperature);
 
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", displayCelciusTemperature);
-
-// weather forecast
