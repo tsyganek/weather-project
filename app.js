@@ -2,8 +2,10 @@
 
 let celciusTemperature = null;
 let feelsLikeCelciusTemperature = null;
+let currentTempMaxCelcius = null;
+let currentTempMinCelcius = null;
 let forecastCelciusTemperatureMax = null;
-let foreastCelciusTemperatureMin = null;
+let forecastCelciusTemperatureMin = null;
 const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
 
 //define actual time
@@ -31,35 +33,33 @@ function formatDate(timestamp) {
   return `${days[day]}, ${hours}:${minutes}`;
 }
 
+//define correct days of week for forecast data
+let today = new Date();
+let weekday = today.getDay();
+let weekRange = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+];
+
+let days = weekRange.slice(weekday, weekday + 6);
+
 // weather forecast data
 
 function displayForecast(response) {
-  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class = "forecast text-center row">`;
-
-  //define correct days of week for forecast data
-  let today = new Date();
-  let weekday = today.getDay();
-
-  let weekRange = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ];
-
-  let days = weekRange.slice(weekday, weekday + 6);
 
   // man & max temperatures for every forecast day
 
@@ -83,13 +83,11 @@ function displayForecast(response) {
         </div>
       </div>
   `;
-
-    console.log(`http://openweathermap.org/img/wn/
-            ${response.data.daily[i].weather[0].icon}.png`);
   }
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
 // get API data for forecast
 
 function getForecast(coordinates) {
@@ -102,6 +100,7 @@ function getForecast(coordinates) {
 
 function displayWeather(response) {
   // weather icon
+  console.log(response.data);
   let weatherIconElement = document.querySelector("#icon");
   weatherIconElement.setAttribute(
     "src",
@@ -122,8 +121,26 @@ function displayWeather(response) {
   humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
 
   //current wind speed
+  let temperatureMaxElement = document.querySelector("#current-temp-max");
+  temperatureMaxElement.innerHTML = `Max °C: ${Math.round(
+    response.data.main.temp_max
+  )}`;
+  currentTempMaxCelcius = Math.round(response.data.main.temp_max);
+
+  //today temperature max
+  let temperatureMinElement = document.querySelector("#current-temp-min");
+  temperatureMinElement.innerHTML = `Min °C: ${Math.round(
+    response.data.main.temp_min
+  )}`;
+  currentTempMinCelcius = Math.round(response.data.main.temp_min);
+
+  //today wind speed
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = `Wind: ${response.data.wind.speed}km/h`;
+  windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}km/h`;
+
+  //current visibility
+  let visibilityElement = document.querySelector("#visibility");
+  visibilityElement.innerHTML = `Visibility: ${response.data.visibility}m`;
 
   //current feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
@@ -179,12 +196,23 @@ function displayFarenheitTemperature(event) {
   let farenheitTemperature = Math.round(celciusTemperature * 1.8 + 32);
   temperatureElement.innerHTML = `${farenheitTemperature}°F`;
 
-  //feels lake temperature
+  //feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
   let feelsLikeFarenheitTemperature = Math.round(
     feelsLikeCelciusTemperature * 1.8 + 32
   );
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
+
+  //current max temperature
+
+  let currentTempMaxElement = document.querySelector("#current-temp-max");
+  let currentTempMax = Math.round(currentTempMaxCelcius * 1.8 + 32);
+  currentTempMaxElement.innerHTML = `Max°F: ${currentTempMax}`;
+
+  //current min temperature
+  let currentTempMinElement = document.querySelector("#current-temp-min");
+  let currentTempMin = Math.round(currentTempMinCelcius * 1.8 + 32);
+  currentTempMinElement.innerHTML = `Max°F: ${currentTempMin}`;
 }
 
 //convertion to celcius
@@ -198,6 +226,14 @@ function displayCelciusTemperature(event) {
   // feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeCelciusTemperature}°C`;
+
+  // current max temperature
+  let currentTempMaxElement = document.querySelector("#current-temp-max");
+  currentTempMaxElement.innerHTML = `${currentTempMaxCelcius}°C`;
+
+  // current min temperature
+  let currentTempMinElement = document.querySelector("#current-temp-min");
+  currentTempMinElement.innerHTML = `${currentTempMinCelcius}°C`;
 }
 
 let farenheitLink = document.querySelector("#farenheit-link");

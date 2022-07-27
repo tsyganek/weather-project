@@ -27,7 +27,8 @@ h4 {
 
 li {
   list-style: none;
-  font-size: 15px;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 a {
@@ -35,34 +36,73 @@ a {
   cursor: pointer;
 }
 
-.container {
-  margin: 30px;
-  padding-left: 80px;
-  border: 1px solid grey;
-  border-radius: 15px;
-  background-color: #f8d3de;
+ul {
+  padding: 0px;
 }
 
-.current-weather-container {
-  margin-bottom: 20px;
+/* general */
+
+.container {
+  border: 1px solid gray;
+  border-radius: 15px;
+  margin: 20px;
+  margin: auto;
+  background-color: #fcd9d9;
+  padding: 20px 50px;
+}
+
+/* logo */
+
+/* form */
+
+.form-container {
+  margin: auto;
+  padding: 15px 15px 0px;
+}
+
+/* current block */
+
+.current-weather-indexes {
+  vertical-align: bottom;
+  margin-bottom: 40px;
+  text-align: left;
 }
 
 .current-weather-city-block {
-  text-align: right;
-}
-
-.current-weather-icon {
-  width: 90px;
+  text-align: left;
 }
 
 .current-city {
-  font-size: 20px;
+  font-size: 33px;
   font-weight: bold;
+  line-height: 3;
+  opacity: 1;
+}
+
+#feels-like {
+  text-transform: initial;
 }
 
 .current-sky {
-  font-size: 14px;
-  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* forecast */
+
+.forecast-weather-container {
+  text-align: center;
+}
+
+.empty-short {
+  height: 70px;
+}
+
+.empty {
+  height: 100px;
+}
+
+.forecast {
+  margin: auto;
 }
 
 .forecast-icon {

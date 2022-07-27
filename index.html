@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather</title>
+    <title>Oh My Weather</title>
 
     <!-- Bootstrap CSS only -->
     <link
@@ -31,7 +31,7 @@
   <body>
     <div class="container">
       <!-- logo    -->
-      <div class="logo-container"><span class="logo">Weather</span></div>
+      <div class="logo-container"><span class="logo">Oh My Weather</span></div>
 
       <!-- search form -->
       <div class="form-container">
@@ -54,32 +54,30 @@
       <!-- current weather -->
       <div class="current-weather-container">
         <div class="row text-center">
-          <div class="col-6">
-            <div class="row text-center">
-              <div class="col-2">
-                <img class="current-weather-icon" src="" id="icon" />
-              </div>
-              <div class="col-4">
-                <h1 id="temperature"></h1>
-                <span>
-                  <a href="#" id="celcius-link">°C</a> |
-                  <a href="#" id="farenheit-link">°F</a></span
-                >
-              </div>
-              <div class="col-6">
-                <ul>
-                  <li id="feels-like"></li>
-                  <li id="humidity"></li>
-                  <li id="wind"></li>
-                </ul>
-              </div>
-            </div>
+          <div class="col-4">
+            <img class="current-weather-icon" src="" id="icon" />
+            <h1 id="temperature"></h1>
+            <span>
+              <a href="#" id="celcius-link">°C</a> |
+              <a href="#" id="farenheit-link">°F</a>
+            </span>
           </div>
           <div class="col-4 current-weather-city-block">
             <ul>
               <li class="current-city" id="current-city"></li>
-              <li class="current-sky" id="description"></li>
               <li class="current-date" id="current-date"></li>
+              <li class="current-sky" id="description"></li>
+              <li id="wind"></li>
+              <li id="feels-like"></li>
+            </ul>
+          </div>
+          <div class="col-4 current-weather-indexes">
+            <div class="empty"></div>
+            <ul>
+              <li id="current-temp-max"></li>
+              <li id="current-temp-min"></li>
+              <li id="humidity"></li>
+              <li id="visibility"></li>
             </ul>
           </div>
         </div>
