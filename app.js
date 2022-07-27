@@ -1,8 +1,10 @@
-//actual time
+// global variables
 
 let celciusTemperature = null;
 let feelsLikeCelciusTemperature = null;
 const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
+
+//define actual time
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -27,12 +29,13 @@ function formatDate(timestamp) {
   return `${days[day]}, ${hours}:${minutes}`;
 }
 
-// weather forecast
+// weather forecast data
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class = "forecast row">`;
 
+  //define correct days of week for forecast data
   let today = new Date();
   let weekday = today.getDay();
 
@@ -54,6 +57,8 @@ function displayForecast(response) {
   ];
 
   let days = weekRange.slice(weekday, weekday + 6);
+
+  // man & max temperatures for every forecast day
 
   for (let i = 1; i <= 5; i++) {
     forecastHTML =
@@ -78,6 +83,8 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
+// get API data for forecast
+
 function getForecast(coordinates) {
   let forecastApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric&exclude=current,minutely,hourly`;
   console.log(forecastApi);
@@ -87,6 +94,7 @@ function getForecast(coordinates) {
 // weather search engine
 
 function displayWeather(response) {
+  // weather icon
   let weatherIconElement = document.querySelector("#icon");
   weatherIconElement.setAttribute(
     "src",
@@ -97,33 +105,41 @@ function displayWeather(response) {
     `${response.data.weather[0].icon.description}`
   );
 
+  // current temperature
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
   celciusTemperature = Number(temperatureElement.innerHTML.slice(0, -2));
 
+  //current humidity
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `Humidity: ${response.data.main.humidity}%`;
 
+  //current wind speed
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = `Wind: ${response.data.wind.speed}km/h`;
 
+  //current feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
   feelsLikeElement.innerHTML = `Feels like: ${Math.round(
     response.data.main.feels_like
   )}°C`;
   feelsLikeCelciusTemperature = Math.round(response.data.main.feels_like);
 
+  // description pof current weather
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
 
+  // city name
   let cityElement = document.querySelector("#current-city");
   cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
+  //  time
   let dateElement = document.querySelector("#current-date");
   dateElement.innerHTML = ` Last renewed: ${formatDate(
     response.data.dt * 1000
   )}`;
 
+  // take data for forecast
   getForecast(response.data.coord);
 }
 
@@ -134,7 +150,7 @@ function search(city) {
   axios.get(apiUrlbyCityName).then(displayWeather);
 }
 
-search("Mariupol");
+search("Kyiv");
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -146,12 +162,17 @@ let form = document.querySelector("#submit-form");
 form.addEventListener("submit", handleSubmit);
 
 // units convertion
+
+// convertion to farenheit
 function displayFarenheitTemperature(event) {
   event.preventDefault();
+
+  //current temperature
   let temperatureElement = document.querySelector("#temperature");
   let farenheitTemperature = Math.round(celciusTemperature * 1.8 + 32);
   temperatureElement.innerHTML = `${farenheitTemperature}°F`;
 
+  //feels lake temperature
   let feelsLikeElement = document.querySelector("#feels-like");
   let feelsLikeFarenheitTemperature = Math.round(
     feelsLikeCelciusTemperature * 1.8 + 32
@@ -159,11 +180,15 @@ function displayFarenheitTemperature(event) {
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
 }
 
+//convertion to celcius
 function displayCelciusTemperature(event) {
   event.preventDefault();
+
+  // current temperature
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = `${celciusTemperature}°C`;
 
+  // feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeCelciusTemperature}°C`;
 }
