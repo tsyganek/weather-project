@@ -36,7 +36,7 @@ function formatDate(timestamp) {
 function displayForecast(response) {
   console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class = "forecast row">`;
+  let forecastHTML = `<div class = "forecast text-center row">`;
 
   //define correct days of week for forecast data
   let today = new Date();
@@ -70,7 +70,9 @@ function displayForecast(response) {
         <div class="forecast-day">
             <h4 class="forecast-day-text">${days[i]}</h4>
         </div>
-          <img class="forecast-icon" src=""/>
+          <img class="forecast-icon" src="http://openweathermap.org/img/wn/${
+            response.data.daily[i].weather[0].icon
+          }@2x.png"/>
         <div class="forecast-temp">
           <span class="forecast-temp-max">${Math.round(
             response.data.daily[i].temp.max
@@ -130,7 +132,7 @@ function displayWeather(response) {
   )}°C`;
   feelsLikeCelciusTemperature = Math.round(response.data.main.feels_like);
 
-  // description pof current weather
+  // description of current weather
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
 
@@ -183,10 +185,6 @@ function displayFarenheitTemperature(event) {
     feelsLikeCelciusTemperature * 1.8 + 32
   );
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
-
-  //forecast temperature max
-
-  //forecast temperature min
 }
 
 //convertion to celcius

@@ -37,7 +37,7 @@ a {
 
 .container {
   margin: 30px;
-  padding: 30px;
+  padding-left: 80px;
   border: 1px solid grey;
   border-radius: 15px;
   background-color: #f8d3de;
@@ -52,7 +52,7 @@ a {
 }
 
 .current-weather-icon {
-  width: 70px;
+  width: 90px;
 }
 
 .current-city {
@@ -92,4 +92,8 @@ a {
 
 .forecast-temp-min {
   opacity: 0.5;
+}
+
+.forecast-icon {
+  width: 60px;
 }
