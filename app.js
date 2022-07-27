@@ -2,6 +2,8 @@
 
 let celciusTemperature = null;
 let feelsLikeCelciusTemperature = null;
+let forecastCelciusTemperatureMax = null;
+let foreastCelciusTemperatureMin = null;
 const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
 
 //define actual time
@@ -32,6 +34,7 @@ function formatDate(timestamp) {
 // weather forecast data
 
 function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class = "forecast row">`;
 
@@ -67,22 +70,24 @@ function displayForecast(response) {
         <div class="forecast-day">
             <h4 class="forecast-day-text">${days[i]}</h4>
         </div>
-          <img class="forecast-icon" src="1F324.svg" alt="partly cloudy" />
+          <img class="forecast-icon" src=""/>
         <div class="forecast-temp">
           <span class="forecast-temp-max">${Math.round(
             response.data.daily[i].temp.max
-          )}
+          )}°
           </span>
           <span class="forecast-temp-min">
-           ${Math.round(response.data.daily[i].temp.min)}</span>
+           ${Math.round(response.data.daily[i].temp.min)}°</span>
         </div>
       </div>
   `;
+
+    console.log(`http://openweathermap.org/img/wn/
+            ${response.data.daily[i].weather[0].icon}.png`);
   }
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
 // get API data for forecast
 
 function getForecast(coordinates) {
@@ -98,7 +103,7 @@ function displayWeather(response) {
   let weatherIconElement = document.querySelector("#icon");
   weatherIconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   weatherIconElement.setAttribute(
     "alt",
@@ -178,6 +183,10 @@ function displayFarenheitTemperature(event) {
     feelsLikeCelciusTemperature * 1.8 + 32
   );
   feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
+
+  //forecast temperature max
+
+  //forecast temperature min
 }
 
 //convertion to celcius
