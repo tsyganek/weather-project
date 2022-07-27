@@ -2,6 +2,7 @@
 
 let celciusTemperature = null;
 let feelsLikeCelciusTemperature = null;
+const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -28,7 +29,7 @@ function formatDate(timestamp) {
 
 // weather forecast
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class = "forecast row">`;
 
@@ -54,23 +55,33 @@ function displayForecast() {
 
   let days = weekRange.slice(weekday, weekday + 6);
 
-  days.forEach(function (day) {
+  for (let i = 1; i <= 5; i++) {
     forecastHTML =
       forecastHTML +
       ` <div class="col-2 forecast">
         <div class="forecast-day">
-            <h4 class="forecast-day-text">${day}</h4>
+            <h4 class="forecast-day-text">${days[i]}</h4>
         </div>
           <img class="forecast-icon" src="1F324.svg" alt="partly cloudy" />
         <div class="forecast-temp">
-          <span class="forecast-temp-max">11</span>
-          <span class="forecast-temp-min">12</span>
+          <span class="forecast-temp-max">${Math.round(
+            response.data.daily[i].temp.max
+          )}
+          </span>
+          <span class="forecast-temp-min">
+           ${Math.round(response.data.daily[i].temp.min)}</span>
         </div>
       </div>
   `;
-  });
+  }
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let forecastApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric&exclude=current,minutely,hourly`;
+  console.log(forecastApi);
+  axios.get(forecastApi).then(displayForecast);
 }
 
 // weather search engine
@@ -112,18 +123,18 @@ function displayWeather(response) {
   dateElement.innerHTML = ` Last renewed: ${formatDate(
     response.data.dt * 1000
   )}`;
+
+  getForecast(response.data.coord);
 }
 
 // city
 
 function search(city) {
-  const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
   let apiUrlbyCityName = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrlbyCityName).then(displayWeather);
 }
 
 search("Mariupol");
-displayForecast();
 
 function handleSubmit(event) {
   event.preventDefault();
