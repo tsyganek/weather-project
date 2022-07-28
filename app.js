@@ -1,11 +1,5 @@
 // global variables
 
-let celciusTemperature = null;
-let feelsLikeCelciusTemperature = null;
-let currentTempMaxCelcius = null;
-let currentTempMinCelcius = null;
-let forecastCelciusTemperatureMax = null;
-let forecastCelciusTemperatureMin = null;
 const apiKey = "0f128b06bf582bcfa96722c9eae3c85c";
 
 //define actual time
@@ -184,60 +178,3 @@ function handleSubmit(event) {
 
 let form = document.querySelector("#submit-form");
 form.addEventListener("submit", handleSubmit);
-
-// units convertion
-
-// convertion to farenheit
-function displayFarenheitTemperature(event) {
-  event.preventDefault();
-
-  //current temperature
-  let temperatureElement = document.querySelector("#temperature");
-  let farenheitTemperature = Math.round(celciusTemperature * 1.8 + 32);
-  temperatureElement.innerHTML = `${farenheitTemperature}°F`;
-
-  //feels like temperature
-  let feelsLikeElement = document.querySelector("#feels-like");
-  let feelsLikeFarenheitTemperature = Math.round(
-    feelsLikeCelciusTemperature * 1.8 + 32
-  );
-  feelsLikeElement.innerHTML = `Feels like: ${feelsLikeFarenheitTemperature}°F`;
-
-  //current max temperature
-
-  let currentTempMaxElement = document.querySelector("#current-temp-max");
-  let currentTempMax = Math.round(currentTempMaxCelcius * 1.8 + 32);
-  currentTempMaxElement.innerHTML = `Max°F: ${currentTempMax}`;
-
-  //current min temperature
-  let currentTempMinElement = document.querySelector("#current-temp-min");
-  let currentTempMin = Math.round(currentTempMinCelcius * 1.8 + 32);
-  currentTempMinElement.innerHTML = `Max°F: ${currentTempMin}`;
-}
-
-//convertion to celcius
-function displayCelciusTemperature(event) {
-  event.preventDefault();
-
-  // current temperature
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${celciusTemperature}°C`;
-
-  // feels like temperature
-  let feelsLikeElement = document.querySelector("#feels-like");
-  feelsLikeElement.innerHTML = `Feels like: ${feelsLikeCelciusTemperature}°C`;
-
-  // current max temperature
-  let currentTempMaxElement = document.querySelector("#current-temp-max");
-  currentTempMaxElement.innerHTML = `${currentTempMaxCelcius}°C`;
-
-  // current min temperature
-  let currentTempMinElement = document.querySelector("#current-temp-min");
-  currentTempMinElement.innerHTML = `${currentTempMinCelcius}°C`;
-}
-
-let farenheitLink = document.querySelector("#farenheit-link");
-farenheitLink.addEventListener("click", displayFarenheitTemperature);
-
-let celciusLink = document.querySelector("#celcius-link");
-celciusLink.addEventListener("click", displayCelciusTemperature);
