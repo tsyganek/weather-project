@@ -116,14 +116,14 @@ function displayWeather(response) {
 
   //current wind speed
   let temperatureMaxElement = document.querySelector("#current-temp-max");
-  temperatureMaxElement.innerHTML = `Max °C: ${Math.round(
+  temperatureMaxElement.innerHTML = `Max°C: ${Math.round(
     response.data.main.temp_max
   )}`;
   currentTempMaxCelcius = Math.round(response.data.main.temp_max);
 
   //today temperature max
   let temperatureMinElement = document.querySelector("#current-temp-min");
-  temperatureMinElement.innerHTML = `Min °C: ${Math.round(
+  temperatureMinElement.innerHTML = `Min°C: ${Math.round(
     response.data.main.temp_min
   )}`;
   currentTempMinCelcius = Math.round(response.data.main.temp_min);
@@ -131,10 +131,6 @@ function displayWeather(response) {
   //today wind speed
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)}km/h`;
-
-  //current visibility
-  let visibilityElement = document.querySelector("#visibility");
-  visibilityElement.innerHTML = `Visibility: ${response.data.visibility}m`;
 
   //current feels like temperature
   let feelsLikeElement = document.querySelector("#feels-like");
@@ -153,9 +149,7 @@ function displayWeather(response) {
 
   //  time
   let dateElement = document.querySelector("#current-date");
-  dateElement.innerHTML = ` Last renewed: ${formatDate(
-    response.data.dt * 1000
-  )}`;
+  dateElement.innerHTML = `${formatDate(response.data.dt * 1000)}`;
 
   // take data for forecast
   getForecast(response.data.coord);

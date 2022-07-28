@@ -12,7 +12,6 @@ footer {
 
 h1,
 h2 {
-  font-size: 30px;
   font-weight: bold;
 }
 
@@ -20,14 +19,14 @@ h3 {
   font-size: 15px;
   font-weight: 400;
 }
-
+/* 
 h4 {
   font-size: 15px;
-}
+} */
 
 li {
   list-style: none;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.8;
 }
 
@@ -52,6 +51,18 @@ ul {
 }
 
 /* logo */
+.logo {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Roboto;
+  color: #e0218a;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.logo-container {
+  margin: 10px;
+}
 
 /* form */
 
@@ -75,8 +86,14 @@ ul {
 .current-city {
   font-size: 33px;
   font-weight: bold;
-  line-height: 3;
+  line-height: 2.5;
   opacity: 1;
+}
+
+.current-date {
+  font-size: 18px;
+  font-weight: bolder;
+  line-height: 2;
 }
 
 #feels-like {
@@ -89,16 +106,12 @@ ul {
 
 /* forecast */
 
-.forecast-weather-container {
-  text-align: center;
-}
-
 .empty-short {
   height: 70px;
 }
 
 .empty {
-  height: 100px;
+  height: 120px;
 }
 
 .forecast {
@@ -107,19 +120,6 @@ ul {
 
 .forecast-icon {
   width: 30px;
-}
-
-.logo {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: Roboto;
-  color: #e0218a;
-  font-size: 25px;
-  margin-bottom: 20px;
-}
-
-.logo-container {
-  margin: 10px;
 }
 
 .forecast-weather-container {
@@ -135,5 +135,5 @@ ul {
 }
 
 .forecast-icon {
-  width: 60px;
+  width: 70px;
 }
