@@ -38,9 +38,8 @@ ul {
 /* general */
 
 .container {
-  border: 1px solid gray;
+  border: 1px solid white;
   border-radius: 15px;
-  margin: 20px;
   margin: auto;
   background-color: #fcd9d9;
   padding: 20px 50px;
