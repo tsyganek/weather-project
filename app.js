@@ -149,7 +149,7 @@ function displayWeather(response) {
 
   //  time
   let dateElement = document.querySelector("#current-date");
-  dateElement.innerHTML = `${formatDate(response.data.dt * 1000)}`;
+  dateElement.innerHTML = `Checked: ${formatDate(response.data.dt * 1000)}`;
 
   // take data for forecast
   getForecast(response.data.coord);
